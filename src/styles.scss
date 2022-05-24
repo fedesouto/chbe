@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+$primary: #3F51B5;
+$secondary: #9E9E9E;
+$danger: #F44336;
+$warning: #FFC107;
+$success: #4CAF50;
+$light: #eeeeee;
+$dark: #212121;
+
+$font: 'Poppins', sans-serif;
+$bold: 600;
+$regular: 400;
+$soft: 300;
+
+@mixin container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: $font;
+}
+
+;
+
+nav {
+    @include container;
+    flex-direction: column;
+    padding: 1.25em;
+    background-color: $dark;
+    color: $light;
+
+    .welcome-bar {
+        @include container;
+        justify-content: space-between;
+        width: 100%;
+
+        h1 {
+            font-size: 2em;
+        }
+
+        svg {
+            font-size: 2em;
+            cursor: pointer;
+        }
+    }
+
+    ul {
+        @include container;
+        flex-direction: column;
+        list-style-type: none;
+        margin-top: 1em;
+        transition: margin-top ease-out 0.5s, opacity .6s cubic-bezier(.95, .08, .57, .77);
+
+        li {
+            margin: 0.25em;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: $light;
+        padding: 0.25em;
+        text-transform: uppercase;
+    }
+
+    .hide {
+        opacity: 0;
+        transition: margin-top ease-in-out .5s;
+        visibility: hidden;
+        margin-top: -100px;
+    }
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 400px;
+}
+
+.product-card {
+    @include container;
+    justify-content: space-between;
+    margin: 1em;
+    height: 260px;
+    width: calc(100% - 2em);
+    flex-direction: column;
+
+    .product-image-wrapper {
+        height: 60%;
+        border-radius: 1em 1em 0 0;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1em 1em 0 0;
+
+        }
+    }
+
+    .product-info {
+        font-size: 0.9em;
+    }
+}
+
+.btn {
+    width: 100%;
+    padding: .5em;
+    border: none;
+    border-radius: .5em;
+    cursor: pointer;
+
+    &.btn-primary {
+        background-color: $primary;
+        color: $light;
+    }
+
+}
+
+.search-bar {
+    margin: 1em;
+
+    input {
+        padding: 1rem 0.5rem;
+        width: 100%;
+        padding-left: 4rem;
+        background-color: $light;
+        border: none;
+        border-radius: .5em;
+    }
+
+    input:focus {
+        outline: $secondary 1px solid;
+    }
+
+    span {
+        position: absolute;
+        left: 1.5rem;
+        padding: 1rem;
+        color: $secondary;
+    }
+}
