@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiMenu, FiShoppingCart } from 'react-icons/fi'
+import { FiMenu, FiShoppingCart , FiX} from 'react-icons/fi'
 
 const Navbar = () => {
     const [visibility, setVisibility] = useState(false);
@@ -8,14 +8,14 @@ const Navbar = () => {
     return (
         <nav>
             <div className='welcome-bar'>
-                <div onClick={() => setVisibility(!visibility)}><FiMenu /></div>
+                <div onClick={() => setVisibility(!visibility)}>{!visibility?<FiMenu />:<FiX />}</div>
                 <h1>CHBE</h1>
-                <Link to='/'><FiShoppingCart /></Link>
+                <Link to='/cart' onClick={()=> setVisibility(false)}><FiShoppingCart /></Link>
             </div>
-            <ul className={!visibility && 'hide'}>
-                <li className='nav-link'><Link to='/'>Home</Link></li>
-                <li className='nav-link'><Link to='/'>Categories</Link></li>
-                <li className='nav-link'><Link to='/'>User</Link></li>
+            <ul className={!visibility ? 'hide' : undefined}>
+                <li className='nav-link'><Link to='/' onClick={()=> setVisibility(false)}>Home</Link></li>
+                <li className='nav-link'><Link to='/' onClick={()=> setVisibility(false)}>Categories</Link></li>
+                <li className='nav-link'><Link to='/' onClick={()=> setVisibility(false)}>User</Link></li>
             </ul>
 
         </nav>

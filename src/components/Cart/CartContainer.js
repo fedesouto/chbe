@@ -1,31 +1,30 @@
 import React from "react";
-import Filters from "./Filters";
-import ProductCard from "./ProductCard";
-import Searchbar from "./Searchbar";
+import CartProduct from "./CartProduct";
 
-const ProductList = () => {
+const CartContainer = () => {
   return (
     <div>
-      <Searchbar />
-      <Filters />
-      <div className="product-list">
-        <ProductCard
+      <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
+      <div>
+        <CartProduct
           title={"Producto de muestra"}
           price={200}
           thumbnail={
             "http://www.carsaludable.com.ar/wp-content/uploads/2014/03/default-placeholder.png"
           }
+          quantity={3}
         />
-        <ProductCard
+        <CartProduct
           title={"Producto de muestra"}
           price={200}
           thumbnail={
             "http://www.carsaludable.com.ar/wp-content/uploads/2014/03/default-placeholder.png"
           }
+          quantity={3}
         />
       </div>
     </div>
   );
 };
 
-export default ProductList;
+export default CartContainer;
