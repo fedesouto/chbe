@@ -1,13 +1,7 @@
 import React, { FunctionComponent } from "react";
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { Link } from "react-router-dom";
-
-interface Product {
-  id?: number
-  title: string
-  price: number
-  thumbnail: string
-}
+import { Product } from "../../types";
 
 const ProductDetail:FunctionComponent<Product> = ({ id, title, price, thumbnail }) => {
   return (

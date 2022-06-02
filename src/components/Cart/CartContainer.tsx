@@ -7,6 +7,7 @@ const CartContainer: FunctionComponent = () => {
       <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
       <div>
         <CartProduct
+          id={1}
           title={"Producto de muestra"}
           price={200}
           thumbnail={
@@ -15,6 +16,7 @@ const CartContainer: FunctionComponent = () => {
           quantity={3}
         />
         <CartProduct
+          id={2}
           title={"Producto de muestra"}
           price={200}
           thumbnail={

@@ -5,6 +5,7 @@ const ProductDetailContainer: FunctionComponent = () => {
   return (
     <div>
       <ProductDetail
+        id={1}
         title={"Producto de muestra"}
         price={200}
         thumbnail={

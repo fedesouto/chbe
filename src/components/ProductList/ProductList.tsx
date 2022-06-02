@@ -3,8 +3,6 @@ import Filters from "./Filters";
 import ProductCard from "./ProductCard";
 import Searchbar from "./Searchbar";
 
-
-
 const ProductList: FunctionComponent = () => {
   return (
     <div>
@@ -12,6 +10,7 @@ const ProductList: FunctionComponent = () => {
       <Filters />
       <div className="product-list">
         <ProductCard
+          id={1}
           title={"Producto de muestra"}
           price={200}
           thumbnail={
@@ -19,6 +18,7 @@ const ProductList: FunctionComponent = () => {
           }
         />
         <ProductCard
+          id={2}
           title={"Producto de muestra"}
           price={200}
           thumbnail={

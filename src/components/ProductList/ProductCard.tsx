@@ -1,13 +1,9 @@
 import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import { Product } from "../../types";
 
-interface Product {
-  title: string
-  price: number
-  thumbnail: string
-}
 
-const ProductCard: FunctionComponent<Product> = ({ title, price, thumbnail }) => {
+const ProductCard: FunctionComponent<Product> = ({id, title, price, thumbnail }) => {
   return (
     <div className="product-card">
       <Link to="/detail">

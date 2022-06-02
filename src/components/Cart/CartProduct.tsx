@@ -1,11 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import {FiXCircle} from 'react-icons/fi'
+import {Product} from '../../types'
 
-interface CartProduct {
-    id?: number
-    title: string
-    price: number
-    thumbnail: string
+interface CartProduct extends Product {
     quantity: number
 }
 
