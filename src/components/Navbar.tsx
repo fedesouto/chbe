@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiShoppingCart , FiX} from 'react-icons/fi'
 
-const Navbar = () => {
-    const [visibility, setVisibility] = useState(false);
+const Navbar:FunctionComponent = () => {
+    const [visibility, setVisibility] = useState<boolean>(false);
 
     return (
         <nav>

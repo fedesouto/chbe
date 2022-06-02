@@ -1,30 +1,33 @@
-import React from "react";
-import CartProduct from "./CartProduct";
+import React, { FunctionComponent } from "react";
+import Filters from "./Filters";
+import ProductCard from "./ProductCard";
+import Searchbar from "./Searchbar";
 
-const CartContainer = () => {
+
+
+const ProductList: FunctionComponent = () => {
   return (
     <div>
-      <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
-      <div>
-        <CartProduct
+      <Searchbar />
+      <Filters />
+      <div className="product-list">
+        <ProductCard
           title={"Producto de muestra"}
           price={200}
           thumbnail={
             "http://www.carsaludable.com.ar/wp-content/uploads/2014/03/default-placeholder.png"
           }
-          quantity={3}
         />
-        <CartProduct
+        <ProductCard
           title={"Producto de muestra"}
           price={200}
           thumbnail={
             "http://www.carsaludable.com.ar/wp-content/uploads/2014/03/default-placeholder.png"
           }
-          quantity={3}
         />
       </div>
     </div>
   );
 };
 
-export default CartContainer;
+export default ProductList;

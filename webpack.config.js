@@ -3,13 +3,22 @@ const path = require("path");
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
+  devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
   },
+  resolve: {
+    extensions: ['.tsx', '.js', '.json']
+},
   mode: "development",
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.?js$/,
         exclude: /node_modules/,
@@ -30,7 +39,7 @@ module.exports = {
           loader: "url-loader",
         },
       },
-    ],
+    ]
   },
   devServer: {
     historyApiFallback: true,

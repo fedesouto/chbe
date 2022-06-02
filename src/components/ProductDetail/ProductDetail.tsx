@@ -1,8 +1,15 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { Link } from "react-router-dom";
 
-const ProductDetail = ({ id, title, price, thumbnail }) => {
+interface Product {
+  id?: number
+  title: string
+  price: number
+  thumbnail: string
+}
+
+const ProductDetail:FunctionComponent<Product> = ({ id, title, price, thumbnail }) => {
   return (
     <div className="product-detail">
       <div className="image-wrapper">

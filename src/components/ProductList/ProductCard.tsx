@@ -1,7 +1,13 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ title, price, thumbnail }) => {
+interface Product {
+  title: string
+  price: number
+  thumbnail: string
+}
+
+const ProductCard: FunctionComponent<Product> = ({ title, price, thumbnail }) => {
   return (
     <div className="product-card">
       <Link to="/detail">

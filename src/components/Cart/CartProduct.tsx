@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {FiXCircle} from 'react-icons/fi'
 
-const CartProduct = ({id, title, price, thumbnail, quantity}) => {
+interface CartProduct {
+    id?: number
+    title: string
+    price: number
+    thumbnail: string
+    quantity: number
+}
+
+const CartProduct: FunctionComponent<CartProduct> = ({id, title, price, thumbnail, quantity}) => {
     return(
         <div className='cart-product'>
             <div className='image-wrapper'>

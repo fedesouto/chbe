@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CartContainer from './components/Cart/CartContainer';
 import Navbar from './components/Navbar';
 import ProductDetailContainer from './components/ProductDetail/ProductDetailContainer';
 import ProductList from './components/ProductList/ProductList';
 
-const App = () => {
+const App: FunctionComponent = () => {
     return(
         <BrowserRouter>
             <Navbar />

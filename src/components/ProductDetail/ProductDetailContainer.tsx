@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import ProductDetail from "./ProductDetail";
 
-const ProductDetailContainer = () => {
+const ProductDetailContainer: FunctionComponent = () => {
   return (
     <div>
       <ProductDetail

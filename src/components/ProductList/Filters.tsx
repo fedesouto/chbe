@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { BiSortAlt2, BiFilter } from "react-icons/bi"
 
-const Filters = () => {
+const Filters: FunctionComponent = () => {
     return (
         <div className='filter-sorter'>
             <button className='btn'>Filter <BiFilter /></button>
