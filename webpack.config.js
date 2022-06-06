@@ -9,7 +9,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: ['.tsx', '.js', '.json']
+    extensions: ['.tsx', '.js', '.json', '.ts']
 },
   mode: "development",
   module: {

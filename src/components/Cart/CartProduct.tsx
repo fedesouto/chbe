@@ -6,16 +6,16 @@ interface CartProduct extends Product {
     quantity: number
 }
 
-const CartProduct: FunctionComponent<CartProduct> = ({id, title, price, thumbnail, quantity}) => {
+const CartProduct: FunctionComponent = () => {
     return(
         <div className='cart-product'>
             <div className='image-wrapper'>
-                <img src={thumbnail}/>
+                <img src=""/>
             </div>
             <div className='product-info'>
-                <b>$ {price}</b>
-                <p>{title}</p>
-                <em>{quantity}</em>
+                <b>$ {}</b>
+                <p>{}</p>
+                <em>{}</em>
             </div>
             <div>
                 <FiXCircle/>

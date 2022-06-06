@@ -1,6 +1,10 @@
 export interface Product {
     id: number
-    title: string
+    timestamp: number
+    name: string
+    description: string
+    code: number
+    image: string
     price: number
-    thumbnail: string
+    stock: number
   }

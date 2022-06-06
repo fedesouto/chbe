@@ -2,20 +2,29 @@ import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../../types";
 
-
-const ProductCard: FunctionComponent<Product> = ({id, title, price, thumbnail }) => {
+const ProductCard: FunctionComponent<Product> = ({
+  id,
+  timestamp,
+  name,
+  description,
+  code,
+  image,
+  price,
+  stock,
+}) => {
   return (
     <div className="product-card">
-      <Link to="/detail">
+      <Link to={`/${id}`}>
         <div className="product-image-wrapper">
-          <img src={thumbnail} alt={title} />
+          <img src={image} alt={name} />
         </div>
       </Link>
-      <Link to="/detail">
-      <div className="product-info">
-        <b>${price}</b>
-        <p>{title}</p>
-      </div></Link>
+      <Link to={`/${id}`}>
+        <div className="product-info">
+          <b>${price}</b>
+          <p>{name}</p>
+        </div>
+      </Link>
       <button className="btn btn-primary">Add to cart</button>
     </div>
   );
