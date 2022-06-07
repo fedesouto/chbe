@@ -14,7 +14,7 @@ const Navbar:FunctionComponent = () => {
             </div>
             <ul className={!visibility ? 'hide' : undefined}>
                 <li className='nav-link'><Link to='/' onClick={()=> setVisibility(false)}>Home</Link></li>
-                <li className='nav-link'><Link to='/' onClick={()=> setVisibility(false)}>Categories</Link></li>
+                <li className='nav-link'><Link to='/admin/add' onClick={()=> setVisibility(false)}>Add Products</Link></li>
                 <li className='nav-link'><Link to='/' onClick={()=> setVisibility(false)}>User</Link></li>
             </ul>
 

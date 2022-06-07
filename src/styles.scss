@@ -241,3 +241,32 @@ a{
         color: $secondary;
     }
 }
+.product-form {
+    max-width: 350px;
+    margin: auto;
+    @include container;
+    flex-direction: column;
+    .btn {
+        margin-top: 1rem;
+        height: 50px;
+        width: 300px;
+        font-size: 1rem;
+    }
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-between;
+    margin: 0.12rem;
+    input {
+        width: 296px;
+        font-size: 16px;
+        padding: 0.3rem 0;
+
+    }
+    
+    label {
+        text-transform: capitalize;
+    }
+}

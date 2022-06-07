@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AdminPanel from './components/Admin/AdminPanel';
+import ProductForm from './components/Admin/ProductForm';
 import CartContainer from './components/Cart/CartContainer';
 import Navbar from './components/Navbar';
 import ProductDetailContainer from './components/ProductDetail/ProductDetailContainer';
@@ -12,7 +12,7 @@ const App: FunctionComponent = () => {
             <Navbar />
             <Routes>
                 <Route path='/' element={<ProductList />} />
-                <Route path='/admin' element={<AdminPanel />} />
+                <Route path='/admin/add' element={<ProductForm />} />
                 <Route path='/:productId' element={<ProductDetailContainer />} />
                 <Route path='/cart' element={<CartContainer/>} />
             </Routes>
