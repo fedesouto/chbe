@@ -12,7 +12,7 @@ const ProductDetailContainer: FunctionComponent = () => {
       const data = await getSingleProduct(productId);
       setProduct(data);
     })();
-  });
+  }, []);
   if (!product) return null;
 
   const { id, timestamp, name, description, code, image, price, stock } =

@@ -8,3 +8,9 @@ export interface Product {
     price: number
     stock: number
   }
+
+export interface Cart {
+  id: number
+  timestamp: number
+  productos: Array<Product>
+}
