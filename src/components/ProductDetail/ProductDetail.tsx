@@ -3,6 +3,7 @@ import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { Link } from "react-router-dom";
 import { addProductToCart } from "../../api/Cart/Carts";
 import { Product } from "../../types";
+import Swal from "sweetalert2";
 
 const ProductDetail:FunctionComponent<Product> = ({
   id,
@@ -24,8 +25,10 @@ const ProductDetail:FunctionComponent<Product> = ({
       image,
       price,
       stock,
+      quantity: 1
     };
     await addProductToCart(data)
+    Swal.fire({text: 'Producto agregado al carrito!'})
   };
   return (
     <div className="product-detail">

@@ -225,7 +225,7 @@ a{
 
 .cart-product {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: calc(100% - 2rem);
     margin: 1rem;
     .image-wrapper {
@@ -239,6 +239,10 @@ a{
 
     p {
         color: $secondary;
+    }
+    .delete-product {
+        margin-left: auto;
+        cursor:pointer;
     }
 }
 .product-form {

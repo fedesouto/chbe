@@ -1,5 +1,5 @@
 export interface Product {
-    id: number
+    id:  string
     timestamp: number
     name: string
     description: string
@@ -10,7 +10,7 @@ export interface Product {
   }
 
 export interface Cart {
-  id: number
+  id:  string
   timestamp: number
   productos: Array<Product>
 }
