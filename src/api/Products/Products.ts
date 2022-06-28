@@ -1,4 +1,4 @@
-const baseUrl:string = 'http://192.168.1.132:8080/'
+import baseUrl from "../config"
 
 export const getAll = async () => {
     const data = fetch(`${baseUrl}api/productos`)

@@ -10,13 +10,14 @@ const CartContainer: FunctionComponent = () => {
   useEffect(() => {
     (async () => {
       const data = await getCart();
+      console.log(data)
       setCart(data);
       setLoading(false);
     })();
   }, []);
 
   if (loading) return null;
-
+  if (!cart || !cart.productos) return <h2 style={{textAlign: 'center', marginTop: '2rem'}}>El carrito está vacío.</h2>;
   return (
     <div>
       <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
