@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
+import Swal from "sweetalert2";
 import { addProduct } from "../../api/Products/Products";
 
 const ProductForm: FunctionComponent = () => {
@@ -24,7 +25,8 @@ const ProductForm: FunctionComponent = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    await addProduct(productData);
+    await addProduct(productData)
+    Swal.fire({text: 'Producto agregado con exito'});
   };
   return (
     <div>
