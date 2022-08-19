@@ -126,6 +126,10 @@ nav {
         background-color: $primary;
         color: $light;
     }
+    &.btn-danger {
+        background-color: $danger;
+        color: $light;
+    }
 
 }
 
@@ -272,5 +276,30 @@ a{
     
     label {
         text-transform: capitalize;
+    }
+}
+
+.rows {
+    @include container;
+    justify-content: flex-start;
+    align-items: center;
+    .image-wrapper {
+        margin-right: 2rem;
+        width: 4rem;
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+    }
+    
+}
+.user-details {
+    font-size: 1.2rem;
+    ul{
+        list-style-type: none;
+        li{
+            margin-top: 2rem;
+        }
     }
 }
