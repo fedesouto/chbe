@@ -1,11 +1,15 @@
 import React, { FunctionComponent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { login } from "../../api/Sessions/Sessions";
+import { useUser } from "../../contexts/UserContext";
 
 const LoginForm: FunctionComponent = () => {
+  const navigate = useNavigate()
   const [userData, setUserData] = useState<object>({});
+  const {setUser} = useUser()
   const inputs = [
-    { name: "email", type: "email" },
+    { name: "username", type: "email" },
     { name: "password", type: "password" }
   ];
   const handleChange = (event: { target: { name: any; value: any } }) => {
@@ -14,8 +18,8 @@ const LoginForm: FunctionComponent = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log(userData)
-    Swal.fire({ text: "Welcome back to CHBE!" });
+    await login(userData, setUser)
+    Swal.fire({title: "Welcome back!", timer: 2000}).then((result) => navigate('/user'))
   };
   return (
     <div>

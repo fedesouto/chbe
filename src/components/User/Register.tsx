@@ -1,16 +1,21 @@
 import React, { FunctionComponent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { register } from "../../api/Sessions/Sessions";
+import { useUser } from "../../contexts/UserContext";
 
 const RegisterForm: FunctionComponent = () => {
   const [userData, setUserData] = useState<object>({});
+  const navigate = useNavigate()
+  const {setUser} = useUser()
   const inputs = [
-    { name: "email", type: "email" },
+    { name: "username", type: "email" },
     { name: "password", type: "password" },
     { name: "name", type: "text" },
+    { name: "age", type: "text" },
     { name: "phone", type: "text" },
     { name: "address", type: "text" },
-    { name: "image", type: "url" },
+    { name: "avatar", type: "url" },
   ];
   const handleChange = (event: { target: { name: any; value: any } }) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
@@ -18,8 +23,8 @@ const RegisterForm: FunctionComponent = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log(userData);
-    Swal.fire({ text: "Welcome to CHBE!" });
+    await register(userData, setUser)
+    Swal.fire({title: "Welcome to CHBE!", timer: 2000}).then((result) => navigate('/user'))
   };
   return (
     <div>
