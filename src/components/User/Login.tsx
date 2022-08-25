@@ -1,36 +1,29 @@
 import React, { FunctionComponent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { addProduct } from "../../api/Products/Products";
+import { login } from "../../api/Sessions/Sessions";
+import { useUser } from "../../contexts/UserContext";
 
-const ProductForm: FunctionComponent = () => {
-  const [productData, setProductData] = useState<object>({
-    name: "",
-    description: "",
-    code: 0,
-    image: "",
-    price: 0,
-    stock: 0,
-  });
+const LoginForm: FunctionComponent = () => {
+  const navigate = useNavigate()
+  const [userData, setUserData] = useState<object>({});
+  const {setUser} = useUser()
   const inputs = [
-    { name: "name", type: "text" },
-    { name: "description", type: "text" },
-    { name: "code", type: "number" },
-    { name: "image", type: "url" },
-    { name: "price", type: "number" },
-    { name: "stock", type: "number" },
+    { name: "username", type: "email" },
+    { name: "password", type: "password" }
   ];
   const handleChange = (event: { target: { name: any; value: any } }) => {
-    setProductData({ ...productData, [event.target.name]: event.target.value });
+      setUserData({ ...userData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    await addProduct(productData)
-    Swal.fire({text: 'Producto agregado con exito'});
+    await login(userData, setUser)
+    Swal.fire({title: "Welcome back!", timer: 2000}).then((result) => navigate('/user'))
   };
   return (
     <div>
-      <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>add product</h1>
+      <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>login</h1>
       <form className="product-form" onSubmit={handleSubmit}>
         {inputs.map(({ name, type }) => {
           return (
@@ -49,11 +42,12 @@ const ProductForm: FunctionComponent = () => {
         <input
           className="btn btn-primary"
           type="submit"
-          value="Agregar producto"
+          value="Login"
         />
+      <Link to="/signup" style={{textDecoration: 'underline', marginTop:'1rem'}}>Click here to register.</Link>
       </form>
     </div>
   );
 };
 
-export default ProductForm;
+export default LoginForm;
