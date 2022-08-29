@@ -18,8 +18,11 @@ const LoginForm: FunctionComponent = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    await login(userData, setUser)
-    Swal.fire({title: "Welcome back!", timer: 2000}).then((result) => navigate('/user'))
+    try{await login(userData, setUser)
+    Swal.fire({title: "Welcome back!", timer: 2000}).then((result) => navigate('/user'))}
+    catch(error) {
+      Swal.fire({title: 'Ocurrió un error', icon: 'error', text: `Error: ${error}`})
+    }
   };
   return (
     <div>

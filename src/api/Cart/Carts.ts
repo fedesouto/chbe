@@ -27,3 +27,4 @@ export const deleteProductFromCart = async (id_producto: string, cartId: string 
     const json = await response.json();
     console.log(json)
 }
+

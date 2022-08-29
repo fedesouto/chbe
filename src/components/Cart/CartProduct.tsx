@@ -19,7 +19,7 @@ const CartProduct: FunctionComponent<Product> = ({
   price,
   stock,
 }) => {
-  const { setCart } = useCart();
+  const { cart, setCart } = useCart();
   const handleDelete = async () => {
     const confirmation = await Swal.fire({
       text: "¿Desea eliminar el producto del carrito?",
@@ -28,7 +28,7 @@ const CartProduct: FunctionComponent<Product> = ({
       denyButtonText: "No",
     });
     if (confirmation.value) {
-      await deleteProductFromCart(id);
+      await deleteProductFromCart(id, cart.id);
       setCart(await getCart());
     }
   };

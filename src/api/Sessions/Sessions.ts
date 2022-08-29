@@ -11,7 +11,7 @@ export const login = async (data: object, callback: any) => {
     sessionStorage.setItem('userdata', JSON.stringify(data))
     callback(data);
   } else {
-    console.log("login error");
+    throw new Error('Datos incorrectos');
   }
 };
 
