@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from "react";
-import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { Link } from "react-router-dom";
 import { addProductToCart } from "../../api/Cart/Carts";
 import { Product } from "../../types";
 import Swal from "sweetalert2";
+import { useUser } from "../../contexts/UserContext";
+import baseUrl from "../../api/config";
 
-const ProductDetail:FunctionComponent<Product> = ({
+const ProductDetail: FunctionComponent<Product> = ({
   id,
   timestamp,
   name,
@@ -15,6 +17,8 @@ const ProductDetail:FunctionComponent<Product> = ({
   price,
   stock,
 }) => {
+
+  const { user, setUser } = useUser()
   const handleAdd = async () => {
     const data = {
       id,
@@ -27,8 +31,18 @@ const ProductDetail:FunctionComponent<Product> = ({
       stock,
       quantity: 1
     };
-    await addProductToCart(data)
-    Swal.fire({text: 'Producto agregado al carrito!'})
+    const json = await addProductToCart(data, user.cartId)
+    if (!user.cartId) {
+      setUser({ ...user, cartId: json })
+      const response = await fetch(`${baseUrl}/api/session/user/${user.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ cartId: json })
+      })
+      const status = await response.json()
+      console.log(status)
+    }
+    console.log(user.cartId)
+    Swal.fire({ text: 'Producto agregado al carrito!' })
   };
   return (
     <div className="product-detail">

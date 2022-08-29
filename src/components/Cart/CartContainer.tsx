@@ -3,13 +3,15 @@ import { getCart } from "../../api/Cart/Carts";
 import { useCart } from "../../contexts/CartContext";
 import { Product } from "../../types";
 import CartProduct from "./CartProduct";
+import { useUser } from "../../contexts/UserContext";
 
 const CartContainer: FunctionComponent = () => {
   const { cart, setCart } = useCart();
+  const {user} = useUser()
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
-      const data = await getCart();
+      const data = await getCart(user.cartId);
       console.log(data)
       setCart(data);
       setLoading(false);
