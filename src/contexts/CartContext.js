@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => {
       user: {
         username: usr.username,
         name: usr.name,
+        phone: usr.phone
       },
     };
     try {

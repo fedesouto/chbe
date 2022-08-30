@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const CartContainer: FunctionComponent = () => {
   const { cart, setCart, submitOrder } = useCart();
-  const {user} = useUser()
+  const {user, resetCartId} = useUser()
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
@@ -24,6 +24,7 @@ const CartContainer: FunctionComponent = () => {
       const response = await submitOrder()
       if(response.ok) {
         setCart(null)
+        console.log(await resetCartId())
         Swal.fire('Gracias por su compra!')
       }
     } catch (error) {
@@ -63,7 +64,9 @@ const CartContainer: FunctionComponent = () => {
           );
         })}
       </div>
+      <div style={{maxWidth: '300px', margin: 'auto'}}>
       <button className="btn btn-success" onClick={handleSubmit}>Finalizar pedido</button>
+      </div>
     </div>
   );
 };
