@@ -2,26 +2,38 @@ import React, { useEffect, FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../api/Sessions/Sessions";
 import { useUser } from "../../contexts/UserContext";
+import { Bars } from "react-loader-spinner";
 
 const UserPanel: FunctionComponent = () => {
-  const {user, setUser} = useUser();
-  const [isLoading, setIsLoading] = useState(true)
+  const { user, setUser } = useUser();
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const data = await logout()
-    setIsLoading(true)
-    setUser(null)
-    navigate('/login')
-  }
+    setIsLoading(true);
+    const data = await logout();
+    setUser(null);
+    navigate("/login");
+  };
 
   useEffect(() => {
-    if (!user) navigate("/login"); 
-    else{
-      setIsLoading(false)
+    if (!user) navigate("/login");
+    else {
+      setIsLoading(false);
     }
   }, []);
-  if(isLoading) return null
+  if (isLoading)
+    return (
+      <Bars
+        height="80"
+        width="80"
+        color="#3f51b5"
+        ariaLabel="bars-loading"
+        wrapperStyle={{justifyContent:'center', marginTop: '5rem'}}
+        wrapperClass=""
+        visible={true}
+      />
+    );
   return (
     <div style={{ margin: "2rem" }}>
       <div className="rows">

@@ -1,15 +1,18 @@
-import React, { FunctionComponent } from "react";
+import React, { ComponentState, FunctionComponent, SetStateAction } from "react";
 import { FiXCircle } from "react-icons/fi";
 import { deleteProductFromCart, getCart } from "../../api/Cart/Carts";
 import { useCart } from "../../contexts/CartContext";
 import { Product } from "../../types";
 import Swal from "sweetalert2";
+import { useUser } from "../../contexts/UserContext";
+
 
 interface CartProduct extends Product {
   quantity: number;
+  setIsLoading: React.Dispatch<SetStateAction<boolean>>
 }
 
-const CartProduct: FunctionComponent<Product> = ({
+const CartProduct: FunctionComponent<CartProduct> = ({
   id,
   timestamp,
   name,
@@ -18,8 +21,10 @@ const CartProduct: FunctionComponent<Product> = ({
   image,
   price,
   stock,
+  setIsLoading
 }) => {
   const { cart, setCart } = useCart();
+  const {user} = useUser()
   const handleDelete = async () => {
     const confirmation = await Swal.fire({
       text: "¿Desea eliminar el producto del carrito?",
@@ -28,8 +33,10 @@ const CartProduct: FunctionComponent<Product> = ({
       denyButtonText: "No",
     });
     if (confirmation.value) {
+      setIsLoading(true)
       await deleteProductFromCart(id, cart.id);
-      setCart(await getCart());
+      setCart(await getCart(user.cartId));
+      setIsLoading(false)
     }
   };
 

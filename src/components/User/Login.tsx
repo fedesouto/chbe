@@ -3,31 +3,43 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { login } from "../../api/Sessions/Sessions";
 import { useUser } from "../../contexts/UserContext";
+import { Bars } from "react-loader-spinner";
 
 const LoginForm: FunctionComponent = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userData, setUserData] = useState<object>({});
-  const {setUser} = useUser()
+  const { setUser } = useUser();
   const inputs = [
     { name: "username", type: "email" },
-    { name: "password", type: "password" }
+    { name: "password", type: "password" },
   ];
   const handleChange = (event: { target: { name: any; value: any } }) => {
-      setUserData({ ...userData, [event.target.name]: event.target.value });
+    setUserData({ ...userData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    try{await login(userData, setUser)
-    Swal.fire({title: "Welcome back!", timer: 2000}).then((result) => navigate('/user'))}
-    catch(error) {
-      Swal.fire({title: 'Ocurrió un error', icon: 'error', text: `Error: ${error}`})
+    setIsLoading(true)
+    try {
+      await login(userData, setUser);
+      setIsLoading(false)
+      Swal.fire({ title: "Welcome back!", timer: 2000 }).then((result) =>
+        navigate("/user")
+      );
+    } catch (error) {
+      setIsLoading(false)
+      Swal.fire({
+        title: "Ocurrió un error",
+        icon: "error",
+        text: `Error: ${error}`,
+      });
     }
   };
   return (
     <div>
       <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>login</h1>
-      <form className="product-form" onSubmit={handleSubmit}>
+      <form className="product-form">
         {inputs.map(({ name, type }) => {
           return (
             <div className="input-group" key={name}>
@@ -42,12 +54,27 @@ const LoginForm: FunctionComponent = () => {
             </div>
           );
         })}
-        <input
-          className="btn btn-primary"
-          type="submit"
-          value="Login"
-        />
-      <Link to="/signup" style={{textDecoration: 'underline', marginTop:'1rem'}}>Click here to register.</Link>
+        <button className="btn btn-primary" onClick={handleSubmit}>
+          {isLoading ? (
+            <Bars
+              height="25"
+              width="80"
+              color="#ffffff"
+              ariaLabel="bars-loading"
+              wrapperStyle={{justifyContent: 'center'}}
+              wrapperClass=""
+              visible={true}
+            />
+          ) : (
+            "Login"
+          )}
+        </button>
+        <Link
+          to="/signup"
+          style={{ textDecoration: "underline", marginTop: "1rem" }}
+        >
+          Click here to register.
+        </Link>
       </form>
     </div>
   );
