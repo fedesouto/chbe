@@ -34,7 +34,7 @@ const ProductCard: FunctionComponent<Product> = ({
       setUser({ ...user, cartId: json });
       const body = { cartId: json };
       console.log(body);
-      const response = await fetch(`${baseUrl}api/session/user/${user.id}`, {
+      const response = await fetch(`${baseUrl}api/session/user/${user.id}/cart`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

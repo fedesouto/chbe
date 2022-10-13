@@ -6,6 +6,7 @@ import { useUser } from "../../contexts/UserContext";
 
 const RegisterForm: FunctionComponent = () => {
   const [userData, setUserData] = useState<any>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const navigate = useNavigate();
   const { setUser } = useUser();
   const inputs = [

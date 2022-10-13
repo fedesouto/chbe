@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
     const resetCartId = async () => {
         setUser({ ...user, cartId: null });
         const body = { cartId: null };
-        const response = await fetch(`${baseUrl}api/session/user/${user.id}`, {
+        const response = await fetch(`${baseUrl}api/session/user/${user.id}/cart`, {
             method: "PUT",
             headers: {
                 Accept: "application/json",

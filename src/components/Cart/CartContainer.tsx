@@ -5,35 +5,61 @@ import { Product } from "../../types";
 import CartProduct from "./CartProduct";
 import { useUser } from "../../contexts/UserContext";
 import Swal from "sweetalert2";
+import { Bars } from "react-loader-spinner";
 
 const CartContainer: FunctionComponent = () => {
   const { cart, setCart, submitOrder } = useCart();
-  const {user, resetCartId} = useUser()
-  const [loading, setLoading] = useState(true);
+  const { user, resetCartId } = useUser();
+  const [loading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
-      const data = await getCart(user.cartId);
-      setCart(data);
-      setLoading(false);
+      try {
+        const data = await getCart(user.cartId);
+        setCart(data);
+      } catch (error) {
+        setCart(null);
+      }
+      setIsLoading(false);
     })();
-  }, [cart]);
-
+  }, []);
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
-      const response = await submitOrder()
-      if(response.ok) {
-        setCart(null)
-        console.log(await resetCartId())
-        Swal.fire('Gracias por su compra!')
+      const response = await submitOrder();
+      if (response.ok) {
+        await resetCartId();
+        Swal.fire("Gracias por su compra!");
+        setCart(null);
+        setIsLoading(false)
       }
     } catch (error) {
-      Swal.fire({title: 'Ocurrió un error', icon: 'error', text: `Error: ${error}`})
+      Swal.fire({
+        title: "Ocurrió un error",
+        icon: "error",
+        text: `Error: ${error}`,
+      });
     }
-  }
+  };
 
-  if (loading) return null;
-  if (!cart || !cart.productos.length) return <h2 style={{textAlign: 'center', marginTop: '2rem'}}>El carrito está vacío.</h2>;
+  if (loading)
+    return (
+      <Bars
+        height="80"
+        width="80"
+        color="#3f51b5"
+        ariaLabel="bars-loading"
+        wrapperStyle={{ justifyContent: "center", marginTop: "5rem" }}
+        wrapperClass=""
+        visible={true}
+      />
+    );
+  if (!cart || !cart.productos.length)
+    return (
+      <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
+        El carrito está vacío.
+      </h2>
+    );
   return (
     <div>
       <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
@@ -60,12 +86,16 @@ const CartContainer: FunctionComponent = () => {
               image={image}
               price={price}
               stock={stock}
+              setIsLoading={setIsLoading}
+              quantity={1}
             />
           );
         })}
       </div>
-      <div style={{maxWidth: '300px', margin: 'auto'}}>
-      <button className="btn btn-success" onClick={handleSubmit}>Finalizar pedido</button>
+      <div style={{ maxWidth: "300px", margin: "auto" }}>
+        <button className="btn btn-success" onClick={handleSubmit}>
+          Finalizar pedido
+        </button>
       </div>
     </div>
   );

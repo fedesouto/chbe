@@ -7,7 +7,7 @@ export const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(null);
   const { user: usr } = useUser();
 
   const submitOrder = async () => {
