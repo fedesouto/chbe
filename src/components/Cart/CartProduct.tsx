@@ -10,7 +10,7 @@ interface CartProduct extends Product {
 }
 
 const CartProduct: FunctionComponent<Product> = ({
-  id,
+  _id,
   timestamp,
   name,
   description,
@@ -28,7 +28,7 @@ const CartProduct: FunctionComponent<Product> = ({
       denyButtonText: "No",
     });
     if (confirmation.value) {
-      await deleteProductFromCart(id, cart.id);
+      await deleteProductFromCart(_id, cart.id);
       setCart(await getCart());
     }
   };

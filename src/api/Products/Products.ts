@@ -1,13 +1,17 @@
-import baseUrl from "../config"
+import {baseUrl, setBasicHeaders} from "../config"
 
 export const getAll = async () => {
-    const data = fetch(`${baseUrl}api/productos`)
-    const json = await (await data).json()
+    const data = await fetch(`${baseUrl}api/productos`, {
+        headers: setBasicHeaders(), 
+    })
+    const json = await data.json()
     return json;
 }
 
 export const getSingleProduct = async (id:string | number) => {
-    const data = fetch(`${baseUrl}api/productos/${id}`)
+    const data = fetch(`${baseUrl}api/productos/${id}`, {
+        headers: setBasicHeaders()
+    })
     const json = await (await data).json()
     return json;
 }

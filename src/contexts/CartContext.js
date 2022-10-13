@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import baseUrl from "../api/config";
+import {baseUrl} from "../api/config";
 import { useUser } from "./UserContext";
 
 export const CartContext = createContext();

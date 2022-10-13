@@ -1,4 +1,4 @@
-import baseUrl from "../config"
+import {baseUrl} from "../config"
 
 
 export const getCart = async (cartId: string = null) => {

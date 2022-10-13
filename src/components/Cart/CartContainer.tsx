@@ -40,7 +40,7 @@ const CartContainer: FunctionComponent = () => {
       <div>
         {cart.productos.map((product: Product) => {
           const {
-            id,
+            _id,
             timestamp,
             name,
             description,
@@ -51,8 +51,8 @@ const CartContainer: FunctionComponent = () => {
           } = product;
           return (
             <CartProduct
-              key={id}
-              id={id}
+              key={_id}
+              _id={_id}
               timestamp={timestamp}
               name={name}
               description={description}

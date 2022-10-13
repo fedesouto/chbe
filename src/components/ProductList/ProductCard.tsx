@@ -4,10 +4,10 @@ import { addProductToCart } from "../../api/Cart/Carts";
 import { Product } from "../../types";
 import Swal from "sweetalert2";
 import { useUser } from "../../contexts/UserContext";
-import baseUrl from "../../api/config";
+import {baseUrl} from "../../api/config";
 
 const ProductCard: FunctionComponent<Product> = ({
-  id,
+  _id,
   timestamp,
   name,
   description,
@@ -19,7 +19,7 @@ const ProductCard: FunctionComponent<Product> = ({
   const { user, setUser } = useUser();
   const handleAdd = async () => {
     const data = {
-      id,
+      _id,
       timestamp,
       name,
       description,
@@ -48,12 +48,12 @@ const ProductCard: FunctionComponent<Product> = ({
   };
   return (
     <div className="product-card">
-      <Link to={`/products/${id}`}>
+      <Link to={`/products/${_id}`}>
         <div className="product-image-wrapper">
           <img src={image} alt={name} />
         </div>
       </Link>
-      <Link to={`/${id}`}>
+      <Link to={`/${_id}`}>
         <div className="product-info">
           <b>${price}</b>
           <p>{name}</p>

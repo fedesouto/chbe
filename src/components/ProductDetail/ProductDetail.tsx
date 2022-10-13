@@ -5,10 +5,10 @@ import { addProductToCart } from "../../api/Cart/Carts";
 import { Product } from "../../types";
 import Swal from "sweetalert2";
 import { useUser } from "../../contexts/UserContext";
-import baseUrl from "../../api/config";
+import {baseUrl} from "../../api/config";
 
 const ProductDetail: FunctionComponent<Product> = ({
-  id,
+  _id,
   timestamp,
   name,
   description,
@@ -20,7 +20,7 @@ const ProductDetail: FunctionComponent<Product> = ({
   const { user, setUser } = useUser();
   const handleAdd = async () => {
     const data = {
-      id,
+      _id,
       timestamp,
       name,
       description,

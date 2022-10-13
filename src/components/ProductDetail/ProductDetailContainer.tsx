@@ -15,12 +15,12 @@ const ProductDetailContainer: FunctionComponent = () => {
   }, []);
   if (!product) return null;
 
-  const { id, timestamp, name, description, code, image, price, stock } =
+  const { _id, timestamp, name, description, code, image, price, stock } =
     product;
   return (
     <div>
       <ProductDetail
-        id={id}
+        _id={_id}
         timestamp={timestamp}
         name={name}
         description={description}

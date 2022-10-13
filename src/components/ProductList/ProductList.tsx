@@ -36,7 +36,7 @@ const ProductList: FunctionComponent = () => {
       <div className="product-list">
         {products.map((product) => {
           const {
-            id,
+            _id,
             timestamp,
             name,
             description,
@@ -47,7 +47,7 @@ const ProductList: FunctionComponent = () => {
           } = product;
           return (
             <ProductCard
-              id={id}
+              _id={_id}
               timestamp={timestamp}
               name={name}
               description={description}
@@ -55,7 +55,7 @@ const ProductList: FunctionComponent = () => {
               image={image}
               price={price}
               stock={stock}
-              key={id}
+              key={_id}
             />
           );
         })}

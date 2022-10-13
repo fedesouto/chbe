@@ -9,7 +9,7 @@ const LoginForm: FunctionComponent = () => {
   const [userData, setUserData] = useState<object>({});
   const {setUser} = useUser()
   const inputs = [
-    { name: "username", type: "email" },
+    { name: "username", type: "string" },
     { name: "password", type: "password" }
   ];
   const handleChange = (event: { target: { name: any; value: any } }) => {
