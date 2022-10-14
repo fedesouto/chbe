@@ -14,13 +14,11 @@ interface CartProduct extends Product {
 
 const CartProduct: FunctionComponent<CartProduct> = ({
   _id,
-  timestamp,
+  quantity,
   name,
   description,
-  code,
   image,
   price,
-  stock,
   setIsLoading
 }) => {
   const { cart, setCart } = useCart();
@@ -33,8 +31,8 @@ const CartProduct: FunctionComponent<CartProduct> = ({
       denyButtonText: "No",
     });
     if (confirmation.value) {
-      await deleteProductFromCart(_id, cart.id);
-      setCart(await getCart());
+      await deleteProductFromCart(_id, cart._id);
+      setCart(await getCart(cart._id));
     }
   };
 
@@ -44,7 +42,7 @@ const CartProduct: FunctionComponent<CartProduct> = ({
         <img src={image} />
       </div>
       <div className="product-info">
-        <b>$ {price}</b>
+        <b>{quantity}x $ {price}</b>
         <p>{name}</p>
         <em>{description}</em>
       </div>

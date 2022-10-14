@@ -10,31 +10,22 @@ import { Bars } from "react-loader-spinner";
 
 const ProductDetail: FunctionComponent<Product> = ({
   _id,
-  timestamp,
   name,
   description,
-  code,
   image,
   price,
-  stock,
 }) => {
   const { user, setUser } = useUser();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const handleAdd = async () => {
     const data = {
-      _id,
-      timestamp,
-      name,
-      description,
-      code,
-      image,
-      price,
-      stock,
+      product: _id,
       quantity: 1,
     };
     setIsLoading(true);
-    const json = await addProductToCart(data, user.cartId);
-    if (!user.cartId) {
+    const json = await addProductToCart(data, user.currentCart);
+    console.log(json)
+    /* if (!user.cartId) {
       setUser({ ...user, cartId: json });
       const body = { cartId: json };
       console.log(body);
@@ -50,7 +41,7 @@ const ProductDetail: FunctionComponent<Product> = ({
         }
       );
       const status = await response.json();
-    }
+    } */
     setIsLoading(false);
     Swal.fire({ text: "Producto agregado al carrito!" });
   };

@@ -8,29 +8,19 @@ import {baseUrl} from "../../api/config";
 
 const ProductCard: FunctionComponent<Product> = ({
   _id,
-  timestamp,
   name,
-  description,
-  code,
   image,
   price,
-  stock,
 }) => {
   const { user, setUser } = useUser();
   const handleAdd = async () => {
     const data = {
-      _id,
-      timestamp,
-      name,
-      description,
-      code,
-      image,
-      price,
-      stock,
+      product: _id,
       quantity: 1,
     };
-    const json = await addProductToCart(data, user.cartId);
-    if (!user.cartId) {
+    const json = await addProductToCart(data, user.currentCart);
+    console.log(json)
+   /*  if (!user.cartId) {
       setUser({ ...user, cartId: json });
       const body = { cartId: json };
       console.log(body);
@@ -43,7 +33,7 @@ const ProductCard: FunctionComponent<Product> = ({
         body: JSON.stringify(body),
       });
       const status = await response.json();
-    }
+    } */
     Swal.fire({ text: "Producto agregado al carrito!" });
   };
   return (

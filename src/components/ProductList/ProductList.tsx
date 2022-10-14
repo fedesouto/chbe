@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAll } from "../../api/Products/Products";
+import { getUserData } from "../../api/Sessions/Sessions";
 import { useUser } from "../../contexts/UserContext";
 import { Product } from "../../types";
 import Filters from "./Filters";
@@ -18,7 +19,7 @@ const ProductList: FunctionComponent = () => {
 
     if (!user) {
       if (userdata) {
-        setUser(userdata);
+        getUserData(setUser)
       } else {
         navigate("/login");
       }
@@ -37,10 +38,8 @@ const ProductList: FunctionComponent = () => {
         {products.map((product) => {
           const {
             _id,
-            timestamp,
             name,
             description,
-            code,
             image,
             price,
             stock,
@@ -48,10 +47,8 @@ const ProductList: FunctionComponent = () => {
           return (
             <ProductCard
               _id={_id}
-              timestamp={timestamp}
               name={name}
               description={description}
-              code={code}
               image={image}
               price={price}
               stock={stock}

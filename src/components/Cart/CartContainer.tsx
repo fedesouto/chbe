@@ -14,7 +14,7 @@ const CartContainer: FunctionComponent = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await getCart(user.cartId);
+        const data = await getCart(user.currentCart);
         setCart(data);
       } catch (error) {
         setCart(null);
@@ -54,7 +54,7 @@ const CartContainer: FunctionComponent = () => {
         visible={true}
       />
     );
-  if (!cart || !cart.productos.length)
+  if (!cart || !cart.products.length)
     return (
       <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
         El carrito está vacío.
@@ -64,30 +64,27 @@ const CartContainer: FunctionComponent = () => {
     <div>
       <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
       <div>
-        {cart.productos.map((product: Product) => {
+        {cart.products.map((product: any) => {
+          const {product: prod, quantity} = product
           const {
             _id,
-            timestamp,
             name,
             description,
-            code,
             image,
             price,
             stock,
-          } = product;
+          } = prod;
           return (
             <CartProduct
               key={_id}
               _id={_id}
-              timestamp={timestamp}
               name={name}
               description={description}
-              code={code}
               image={image}
               price={price}
               stock={stock}
               setIsLoading={setIsLoading}
-              quantity={1}
+              quantity={quantity}
             />
           );
         })}

@@ -10,7 +10,7 @@ const RegisterForm: FunctionComponent = () => {
   const navigate = useNavigate();
   const { setUser } = useUser();
   const inputs = [
-    { name: "username", type: "email" },
+    { name: "username", type: "text" },
     { name: "password", type: "password" },
     { name: "name", type: "text" },
     { name: "age", type: "text" },
