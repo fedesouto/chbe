@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { createOrder } from "../api/Cart/Carts";
 import {baseUrl} from "../api/config";
 import { useUser } from "./UserContext";
 
@@ -11,27 +12,13 @@ export const CartProvider = ({ children }) => {
   const { user: usr } = useUser();
 
   const submitOrder = async () => {
-    const body = {
-      user: {
-        username: usr.username,
-        name: usr.name,
-        phone: usr.phone
-      },
-    };
     try {
-      const response = await fetch(`${baseUrl}api/carritos/${cart.id}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      return response
+      const payload = await createOrder(cart._id)
+      return payload;
     } catch (error) {
-      console.log(error);
+      throw error;
     }
-  };
+  }
 
   return (
     <CartContext.Provider value={{ cart, setCart, submitOrder }}>

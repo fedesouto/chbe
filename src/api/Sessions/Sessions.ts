@@ -39,15 +39,14 @@ export const register = async (data: object, callback: any) => {
     const currentKey = bodyKeys[i];
     body.append(currentKey, data[currentKey as keyof typeof data]);
   }
-  console.log(body);
   const response = await fetch(`${baseUrl}api/session/signup`, {
     method: "POST",
     body: body,
   });
   if (response.ok) {
     const data = await response.json();
-    callback(data);
-    console.log(data);
+    sessionStorage.setItem("userdata", JSON.stringify(data.token));
+    callback(data.user);
   } else {
     const data = await response.text();
     console.log(data);
@@ -60,7 +59,6 @@ export const getUserData = async (callback: any) => {
       headers: setBasicHeaders(),
     });
     const json = await response.json();
-    console.log(json);
     callback(json);
   } catch (error) {
     throw error;

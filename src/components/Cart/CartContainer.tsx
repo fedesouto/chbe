@@ -9,12 +9,13 @@ import { Bars } from "react-loader-spinner";
 
 const CartContainer: FunctionComponent = () => {
   const { cart, setCart, submitOrder } = useCart();
-  const { user, resetCartId } = useUser();
+  const { user, resetCartId, setUser } = useUser();
   const [loading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
       try {
         const data = await getCart(user.currentCart);
+        setUser({...user, currentCart: data._id})
         setCart(data);
       } catch (error) {
         setCart(null);
@@ -27,8 +28,8 @@ const CartContainer: FunctionComponent = () => {
     setIsLoading(true);
     try {
       const response = await submitOrder();
-      if (response.ok) {
-        await resetCartId();
+      if (response.success) {
+        //await resetCartId();
         Swal.fire("Gracias por su compra!");
         setCart(null);
         setIsLoading(false)
