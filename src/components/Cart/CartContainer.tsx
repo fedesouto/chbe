@@ -29,10 +29,10 @@ const CartContainer: FunctionComponent = () => {
     try {
       const response = await submitOrder();
       if (response.success) {
-        //await resetCartId();
-        Swal.fire("Gracias por su compra!");
-        setCart(null);
+        resetCartId()
+        setCart(null)
         setIsLoading(false)
+        Swal.fire("Gracias por su compra!");
       }
     } catch (error) {
       Swal.fire({

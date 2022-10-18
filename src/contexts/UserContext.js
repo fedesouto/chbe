@@ -7,21 +7,9 @@ let initialState = null
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(initialState)
 
-    const resetCartId = async () => {
-        setUser({ ...user, cartId: null });
-        const body = { cartId: null };
-        const response = await fetch(`${baseUrl}api/session/user/${user.id}/cart`, {
-            method: "PUT",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-        });
-        const status = await response.json();
-        sessionStorage.setItem('userdata', JSON.stringify(user))
-        return status
-    }
+    const resetCartId = () => {
+        setUser({ ...user, currentCart: null })}
+        
     return (
         <UserContext.Provider value={{ user, setUser, resetCartId }}>
             {children}
