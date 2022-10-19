@@ -62,7 +62,7 @@ const CartContainer: FunctionComponent = () => {
       </h2>
     );
   return (
-    <div>
+    <div className="cartContainer">
       <h1 style={{ margin: "1rem", fontSize: "2.5rem" }}>cart</h1>
       <div>
         {cart.products.map((product: any) => {

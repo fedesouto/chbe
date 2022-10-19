@@ -6,7 +6,7 @@ const ProductForm: FunctionComponent = () => {
   const [productData, setProductData] = useState<object>({
     name: "",
     description: "",
-    code: 0,
+    category: "",
     image: "",
     price: 0,
     stock: 0,
@@ -14,7 +14,7 @@ const ProductForm: FunctionComponent = () => {
   const inputs = [
     { name: "name", type: "text" },
     { name: "description", type: "text" },
-    { name: "code", type: "number" },
+    { name: "category", type: "text" },
     { name: "image", type: "url" },
     { name: "price", type: "number" },
     { name: "stock", type: "number" },
@@ -26,7 +26,8 @@ const ProductForm: FunctionComponent = () => {
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     await addProduct(productData)
-    Swal.fire({text: 'Producto agregado con exito'});
+    await Swal.fire({text: 'Producto agregado con exito', timer: 2000});
+    location.reload()    
   };
   return (
     <div>

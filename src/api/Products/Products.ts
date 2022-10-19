@@ -8,6 +8,14 @@ export const getAll = async () => {
     return json;
 }
 
+export const getByCategory = async (category: string) => {
+    const data = await fetch(`${baseUrl}api/productos/category/${category}`, {
+        headers: setBasicHeaders(), 
+    })
+    const json = await data.json()
+    return json;
+}
+
 export const getSingleProduct = async (id:string | number) => {
     const data = await fetch(`${baseUrl}api/productos/${id}`, {
         headers: setBasicHeaders()

@@ -8,6 +8,7 @@ import Filters from "./Filters";
 import ProductCard from "./ProductCard";
 import Searchbar from "./Searchbar";
 
+
 const ProductList: FunctionComponent = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -33,7 +34,7 @@ const ProductList: FunctionComponent = () => {
   return (
     <div>
       <Searchbar />
-      <Filters />
+      <Filters setProducts={setProducts}/>
       <div className="product-list">
         {products.map((product) => {
           const {
