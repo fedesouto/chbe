@@ -1,5 +1,4 @@
 import React, { useContext, createContext, useState } from 'react';
-import {baseUrl} from '../api/config';
 
 export const UserContext = createContext()
 

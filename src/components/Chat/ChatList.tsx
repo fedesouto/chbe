@@ -20,8 +20,11 @@ const ChatList = () => {
   useEffect(() => {
     setSocket(initSocket());
     setIsLoading(false);
-    if (user) {
-      setInputValues({ ...inputValues, email: user.email });
+    if (user?.admin) {
+      setInputValues({ ...inputValues, email: user.email, type:"system" });
+    }
+    else if(user && !user.admin) {
+      setInputValues({...inputValues, email: user.email})
     }
   }, []);
 
@@ -37,6 +40,7 @@ const ChatList = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     socket.emit("new_message", inputValues);
+    setInputValues({...inputValues, message: ''})
   };
   return (
     <div>
