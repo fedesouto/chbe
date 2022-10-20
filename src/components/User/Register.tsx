@@ -14,7 +14,7 @@ const RegisterForm: FunctionComponent = () => {
     { name: "password", type: "password" },
     { name: "name", type: "text" },
     { name: "age", type: "text" },
-    { name: "phone", type: "text" },
+    { name: "email", type: "email" },
     { name: "address", type: "text" },
     { name: "avatar", type: "file" },
   ];
@@ -67,7 +67,7 @@ const RegisterForm: FunctionComponent = () => {
             !userData.password ||
             !userData.name ||
             !userData.age ||
-            !userData.phone ||
+            !userData.email ||
             !userData.address ||
             !userData.avatar
           }

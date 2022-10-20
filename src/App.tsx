@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProductForm from "./components/Admin/ProductForm";
 import CartContainer from "./components/Cart/CartContainer";
+import ChatList from "./components/Chat/ChatList";
 import Navbar from "./components/Navbar";
 import ProductDetailContainer from "./components/ProductDetail/ProductDetailContainer";
 import ProductList from "./components/ProductList/ProductList";
@@ -28,6 +29,7 @@ const App: FunctionComponent = () => {
               element={<ProductDetailContainer />}
             />
             <Route path="/cart" element={<CartContainer />} />
+            <Route path="/chat" element={<ChatList />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

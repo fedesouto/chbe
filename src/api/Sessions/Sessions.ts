@@ -2,7 +2,6 @@ import { baseUrl, setBasicHeaders } from "../config";
 
 export const login = async (data: object, callback: any) => {
   const body = JSON.stringify(data);
-  console.log(body);
   const response = await fetch(`${baseUrl}api/session/login`, {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },

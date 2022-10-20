@@ -46,7 +46,7 @@ const UserPanel: FunctionComponent = () => {
         <ul>
           <li>e-mail: {user.username}</li>
           <li>address: {user.address}</li>
-          <li>phone: {user.phone}</li>
+          <li>email: {user.email}</li>
           <li>age: {user.age}</li>
         </ul>
       </div>

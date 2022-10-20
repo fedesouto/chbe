@@ -12,3 +12,10 @@ export interface Cart {
   timestamp: number
   productos: Array<Product>
 }
+
+export type Chat = {
+  message: string,
+  type: string,
+  email: string,
+  _id: string
+}
