@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:8080/";
+export const baseUrl = "https://abstracted-ajar-sneeze.glitch.me/";
 export const setBasicHeaders = () => {
   const token = sessionStorage.getItem("userdata");
   if (token) {
